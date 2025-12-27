@@ -1,7 +1,7 @@
 ---
 title: my-first-article
 tags:
-  - ''
+  - 'security'
 private: false
 updated_at: ''
 id: null
