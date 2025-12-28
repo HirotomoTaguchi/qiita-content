@@ -1,18 +1,19 @@
 ---
-title: デバイスコードフローを悪用してMicrosoft 365のアカウントを侵害するフィッシングキャンペーンが増えているらしいので改めて対策をまとめる
+title: "デバイスコードフローを悪用して Microsoft 365 のアカウントを侵害するフィッシングキャンペーンが増えているらしいので軽くまとめる"
 tags:
-  - Security
-  - Microsoft Security
-  - SEIM & XDR
-private: true
-updated_at: ''
-id: 19875bf93f50f58a21a1
-organization_url_name: null
-slide: false
-ignorePublish: false
+  - "Security"
+  - "Microsoft Security"
+  - "SIEM & XDR"
+  - "Entra ID"
+private: false
+updated_at: ""
+id: null 
+organization_url_name: null 
+slide: false 
+ignorePublish: false 
 ---
 
-2024年ぐらいに流行っていたデバイスコードを悪用したフィッシング攻撃がまた増えているという話を小耳にはさみました。改めて対策等をまとめておきます。
+2024年ぐらいに流行っていたデバイスコードを悪用したフィッシング攻撃がまた増えているという話を小耳にはさみました。決して新しい攻撃手法とかではないですが、改めて対策等をまとめておきます。
 
 :::note alert
 本記事はあくまでメモです。対策についてのコメントを付記しているケースもありますが、いかなる網羅性や完全性も保証いたしかねます。
@@ -34,11 +35,15 @@ ignorePublish: false
 4. 本人確認（通常はMFAを含む）を完了
 5. 元のデバイスが自動的にログイン完了
 
+https://www.youtube.com/embed/JU_-STABylw
+
 ## 悪用の流れ
 
 ### よくある手口
 
-攻撃者はまず、WhatsApp、Signal、Microsoft Teamsなどの正規のメッセージングアプリを通じてターゲットに接触してくることが多いです。この時、ターゲットに関連する信頼できる人物になりすまします。信頼関係ができたところで、攻撃者はオンライン会議やウェビナーへの招待を送ります。この招待メールやメッセージはMicrosoft Teamsの正規の招待状そっくりに作られていて、会議のタイトルと日時、参加方法の説明、そして「会議コード」として偽装されたデバイスコードが含まれます。被害者がリンクをクリックして「会議コード」を入力すると、正規のMicrosoft認証ページが表示されます。ユーザーは自分のアカウントでログイン（MFAも通過）しますが、攻撃者側で即座に有効なアクセストークンが生成され、攻撃者はパスワード不要でアカウントにアクセス可能になります。
+攻撃者はまず、WhatsApp、Signal、Microsoft Teamsなどの正規のメッセージングアプリを通じてターゲットに接触してくることが多いとのことです。この時、ターゲットに関連する信頼できる人物になりすまします。信頼関係ができたところで、攻撃者はオンライン会議やウェビナーへの招待を送ります。この招待メールやメッセージはMicrosoft Teamsの正規の招待状そっくりに作られていて、会議のタイトルと日時、参加方法の説明、そして「会議コード」として偽装されたデバイスコードが含まれます。被害者がリンクをクリックして「会議コード」を入力すると、正規のMicrosoft認証ページが表示されます。ユーザーは自分のアカウントでログイン（MFAも通過）しますが、攻撃者側で即座に有効なアクセストークンが生成され、攻撃者はパスワード不要でアカウントにアクセス可能になります。
+
+![デバイスコードフロー](https://github.com/user-attachments/assets/9362b2d1-9549-4d76-85bd-d7f5ff8c5d62 "デバイスコードフロー")
 
 重要なのは、リンク先が `https://microsoft.com/devicelogin` というMicrosoftの正規のURLであることです。そのため、URLフィルタリングやセキュリティソフトでは検出できません。ここでの問題は、ユーザーが正しく認証したにもかかわらず、その認証が攻撃者のために使われることです。アクセス権を得た攻撃者は、メールの検索と窃取を行います。「username」「password」「admin」「credentials」「secret」「ministry」などのキーワードでメールを検索し、侵害したアカウントから組織内の他のユーザーにフィッシングメールを送信して横展開を図ります。トークンが有効な限り（場合によっては数週間から数ヶ月）、継続的にアクセスし続けます。
 
@@ -46,17 +51,19 @@ ignorePublish: false
 
 ### Storm-2372による攻撃の実態
 
-Microsoftの調査によると、2024年時点では、Storm-2372というロシアの国家利益に関連する攻撃グループに積極的に悪用されているとのことです。彼らが標的にしているのはヨーロッパ、北米、アフリカ、中東の政府機関、NGO（非政府組織）、ITサービスおよび技術企業、防衛産業といった重要インフラや機密情報を持つ組織です。
+Microsoftの調査によると、2024年時点では、Storm-2372というロシアの国家利益に関連する攻撃グループなどに積極的に悪用されているとのことです。[^2] 彼らが標的にしているのはヨーロッパ、北米、アフリカ、中東の政府機関、NGO（非政府組織）、ITサービスおよび技術企業、防衛産業といった重要インフラや機密情報を持つ組織です。
 
 ### 2025年には更に拡大
 
-加えて、ProofpointはOAuthデバイスコードフィッシングを利用した複数のキャンペーンを自社のブログで報告しています。そこでは、脅威アクターがOAuthデバイス付与承認フローとQRコードを組み合わせてMicrosoftアカウントを侵害することを狙うフィッシングツールの存在や、2025年内で複数回にわたって、攻撃キャンペーンで悪用されていたことなどを報告しています。
+加えて、ProofpointはOAuthデバイスコードフィッシングを利用した複数のキャンペーンを自社のブログで報告しています。そこでは、脅威アクターがOAuthデバイス付与承認フローとQRコードを組み合わせてMicrosoftアカウントを侵害することを狙うフィッシングツールの存在や、2025年内で複数回にわたって、攻撃キャンペーンで悪用されていたことなどを報告しています。[^3]
 
 ## 対策
 
 ### 基本姿勢
 
-最も効果的な対策は、条件付きアクセスポリシーでデバイスコードフローそのものをブロックすることです。マイクロソフト社も公式ドキュメントにおいてブロックを推奨しています。
+最も効果的な対策は、条件付きアクセスポリシーでデバイスコードフローそのものをブロックすることです。マイクロソフト社も公式ドキュメントにおいてブロックを推奨しています。[^5]
+
+![](https://github.com/user-attachments/assets/8e0d2485-e76f-4496-a066-d7f883c9327a)
 
 :::note info
 ブロックを推奨するぐらいならデフォルトオフにしてくれと文句を言いたいところですね。一応2025年2月ぐらいから、利用していないテナントに対してブロックのポリシーを配り始めてはいる[^3]ようなので、彼らの言い分としては放置しているということではないということですが、悪用されそうな機能は最初から手を打っておいてもいいと思うの。MSに強くFBしましょう。
@@ -76,8 +83,6 @@ Microsoftの調査によると、2024年時点では、Storm-2372というロシ
 
 問題ないことを確認次第、レポートモード専用を辞めて本番適用します。
 
-#### KQLクエリで分析
-
 
 
 ### どうしても使うアカウントはカスタム検出クエリで検出する
@@ -92,7 +97,7 @@ SigninLogs
 | order by Count desc
 ```
 
-また、マイクロソフト社のブログでは、より不審なアクティビティに絞った検出のクエリが紹介されていました。
+また、マイクロソフト社のブログでは、より不審なアクティビティに絞った検出を行うクエリが紹介されていました。
 
 ```kusto
 // 疑わしいデバイスコード認証を検出
@@ -148,7 +153,7 @@ CloudAppEvents
 
 最優先でユーザーアカウントの無効化を行います。Microsoft Entra管理センター > ユーザー > 対象ユーザーと進み、「サインインをブロック」を有効化します。
 
-次に、すべてのリフレッシュトークンの取り消しを行います。
+また、すべてのリフレッシュトークンの取り消しを行います。[^4]
 
 ```powershell
 Revoke-MgUserSignInSession -UserId <UserId>
@@ -176,5 +181,7 @@ TBA
 デバイスコードフィッシングは2024年8月から急増し、2025年に入ってさらに進化を続けています。この攻撃は正規のMicrosoft認証システムを悪用するため厄介ですが、ちゃんと対策しておきましょう。
 
 [^1]: [Microsoft identity platform and the OAuth 2.0 device authorization grant flow](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code)
-[^2]: [Access granted: phishing with device code authorization for account takeover](https://www.proofpoint.com/us/blog/threat-insight/access-granted-phishing-device-code-authorization-account-takeover)
-[^3]: [user: revokeSignInSessions](https://learn.microsoft.com/ja-jp/graph/api/user-revokesigninsessions?view=graph-rest-1.0&tabs=http)
+[^2]: [Storm-2372がデバイスコードフィッシングキャンペーンを実施しています](https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/)
+[^3]: [Access granted: phishing with device code authorization for account takeover](https://www.proofpoint.com/us/blog/threat-insight/access-granted-phishing-device-code-authorization-account-takeover)
+[^4]: [user: revokeSignInSessions](https://learn.microsoft.com/ja-jp/graph/api/user-revokesigninsessions?view=graph-rest-1.0&tabs=http)
+[^5]: [条件付きアクセス ポリシーを使用して認証フローをブロックする](https://learn.microsoft.com/ja-jp/entra/identity/conditional-access/policy-block-authentication-flows)
