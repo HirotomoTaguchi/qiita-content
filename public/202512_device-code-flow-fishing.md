@@ -35,7 +35,7 @@ ignorePublish: false
 4. 本人確認（通常はMFAを含む）を完了
 5. 元のデバイスが自動的にログイン完了
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JU_-STABylw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+https://www.youtube.com/embed/JU_-STABylw
 
 ## 悪用の流れ
 
