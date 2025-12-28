@@ -2,7 +2,7 @@
 title: Qiitaってタグにスペース使えないんだね。知らなくてCLIで時間溶けた
 tags:
   - Qiita
-  - qiitaCLI
+  - QiitaCLI
 private: false
 updated_at: ''
 id: null
