@@ -4,7 +4,7 @@ tags:
   - Security
   - Microsoft Security
   - SEIM & XDR
-private: true
+private: false
 updated_at: '2025-12-28T08:35:09+09:00'
 id: 935faacbf4f576bde502
 organization_url_name: null
@@ -34,6 +34,8 @@ ignorePublish: false
 4. 本人確認（通常はMFAを含む）を完了
 5. 元のデバイスが自動的にログイン完了
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JU_-STABylw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+
 ## 悪用の流れ
 
 ### よくある手口
@@ -48,17 +50,19 @@ ignorePublish: false
 
 ### Storm-2372による攻撃の実態
 
-Microsoftの調査によると、2024年時点では、Storm-2372というロシアの国家利益に関連する攻撃グループに積極的に悪用されているとのことです。彼らが標的にしているのはヨーロッパ、北米、アフリカ、中東の政府機関、NGO（非政府組織）、ITサービスおよび技術企業、防衛産業といった重要インフラや機密情報を持つ組織です。
+Microsoftの調査によると、2024年時点では、Storm-2372というロシアの国家利益に関連する攻撃グループなどに積極的に悪用されているとのことです。[^2] 彼らが標的にしているのはヨーロッパ、北米、アフリカ、中東の政府機関、NGO（非政府組織）、ITサービスおよび技術企業、防衛産業といった重要インフラや機密情報を持つ組織です。
 
 ### 2025年には更に拡大
 
-加えて、ProofpointはOAuthデバイスコードフィッシングを利用した複数のキャンペーンを自社のブログで報告しています。そこでは、脅威アクターがOAuthデバイス付与承認フローとQRコードを組み合わせてMicrosoftアカウントを侵害することを狙うフィッシングツールの存在や、2025年内で複数回にわたって、攻撃キャンペーンで悪用されていたことなどを報告しています。
+加えて、ProofpointはOAuthデバイスコードフィッシングを利用した複数のキャンペーンを自社のブログで報告しています。そこでは、脅威アクターがOAuthデバイス付与承認フローとQRコードを組み合わせてMicrosoftアカウントを侵害することを狙うフィッシングツールの存在や、2025年内で複数回にわたって、攻撃キャンペーンで悪用されていたことなどを報告しています。[^3]
 
 ## 対策
 
 ### 基本姿勢
 
-最も効果的な対策は、条件付きアクセスポリシーでデバイスコードフローそのものをブロックすることです。マイクロソフト社も公式ドキュメントにおいてブロックを推奨しています。
+最も効果的な対策は、条件付きアクセスポリシーでデバイスコードフローそのものをブロックすることです。マイクロソフト社も公式ドキュメントにおいてブロックを推奨しています。[^5]
+
+![](https://github.com/user-attachments/assets/8e0d2485-e76f-4496-a066-d7f883c9327a)
 
 :::note info
 ブロックを推奨するぐらいならデフォルトオフにしてくれと文句を言いたいところですね。一応2025年2月ぐらいから、利用していないテナントに対してブロックのポリシーを配り始めてはいる[^3]ようなので、彼らの言い分としては放置しているということではないということですが、悪用されそうな機能は最初から手を打っておいてもいいと思うの。MSに強くFBしましょう。
@@ -148,7 +152,7 @@ CloudAppEvents
 
 最優先でユーザーアカウントの無効化を行います。Microsoft Entra管理センター > ユーザー > 対象ユーザーと進み、「サインインをブロック」を有効化します。
 
-次に、すべてのリフレッシュトークンの取り消しを行います。
+また、すべてのリフレッシュトークンの取り消しを行います。[^4]
 
 ```powershell
 Revoke-MgUserSignInSession -UserId <UserId>
@@ -176,5 +180,7 @@ TBA
 デバイスコードフィッシングは2024年8月から急増し、2025年に入ってさらに進化を続けています。この攻撃は正規のMicrosoft認証システムを悪用するため厄介ですが、ちゃんと対策しておきましょう。
 
 [^1]: [Microsoft identity platform and the OAuth 2.0 device authorization grant flow](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code)
-[^2]: [Access granted: phishing with device code authorization for account takeover](https://www.proofpoint.com/us/blog/threat-insight/access-granted-phishing-device-code-authorization-account-takeover)
-[^3]: [user: revokeSignInSessions](https://learn.microsoft.com/ja-jp/graph/api/user-revokesigninsessions?view=graph-rest-1.0&tabs=http)
+[^2]: [Storm-2372がデバイスコードフィッシングキャンペーンを実施しています](https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/)
+[^3]: [Access granted: phishing with device code authorization for account takeover](https://www.proofpoint.com/us/blog/threat-insight/access-granted-phishing-device-code-authorization-account-takeover)
+[^4]: [user: revokeSignInSessions](https://learn.microsoft.com/ja-jp/graph/api/user-revokesigninsessions?view=graph-rest-1.0&tabs=http)
+[^5]: [条件付きアクセス ポリシーを使用して認証フローをブロックする](https://learn.microsoft.com/ja-jp/entra/identity/conditional-access/policy-block-authentication-flows)
