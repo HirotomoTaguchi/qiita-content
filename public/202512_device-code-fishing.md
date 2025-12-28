@@ -1,9 +1,10 @@
 ---
 title: デバイスコードフローを悪用してMicrosoft 365のアカウントを侵害するフィッシングキャンペーンが増えているらしいので軽くまとめる
 tags:
-  - Security
-  - Microsoft Security
-  - SIEM & XDR
+  - "Security"
+  - "Microsoft Security"
+  - "SIEM & XDR"
+  - "Entra ID"
 private: false
 updated_at: "" # 記事を投稿した際に自動的に記事の更新日時に変わります
 id: null 
