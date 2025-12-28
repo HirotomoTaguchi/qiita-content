@@ -1,16 +1,16 @@
 ---
-title: "デバイスコードフローを悪用して Microsoft 365 のアカウントを侵害するフィッシングキャンペーンが増えているらしいので軽くまとめる"
+title: デバイスコードフローを悪用して Microsoft 365 のアカウントを侵害するフィッシングキャンペーンが増えているらしいので軽くまとめる
 tags:
-  - "Security"
-  - "Microsoft Security"
-  - "SIEM & XDR"
-  - "Entra ID"
+  - 'Security'
+  - 'Microsoft Security'
+  - 'SIEM & XDR'
+  - 'Entra ID'
 private: false
-updated_at: ""
-id: null 
-organization_url_name: null 
-slide: false 
-ignorePublish: false 
+updated_at: ''
+id: null
+organization_url_name: null
+slide: false
+ignorePublish: false
 ---
 
 2024年ぐらいに流行っていたデバイスコードを悪用したフィッシング攻撃がまた増えているという話を小耳にはさみました。決して新しい攻撃手法とかではないですが、改めて対策等をまとめておきます。
