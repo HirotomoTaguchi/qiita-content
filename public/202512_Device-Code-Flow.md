@@ -2,12 +2,12 @@
 title: デバイスコードフローを悪用して Microsoft 365 のアカウントを侵害するフィッシングキャンペーンが増えているらしいので軽くまとめる
 tags:
   - Security
-  - EntraID
-  - MicrosoftSecurity
   - Microsoft365
+  - EntraID
   - MicrosoftDefenderXDR
+  - MicrosoftSecurity
 private: false
-updated_at: '2025-12-28T15:54:33+09:00'
+updated_at: '2026-01-04T10:20:16+09:00'
 id: 5a9d4b7ecdc96a8b8f2d
 organization_url_name: null
 slide: false

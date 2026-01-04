@@ -2,13 +2,13 @@
 title: XXX
 tags:
   - Security
-  - MicrosoftSecurity
   - Microsoft365
   - MicrosoftDefender
   - MicrosoftDefenderXDR
+  - MicrosoftSecurity
 private: true
-updated_at: ''
-id: null
+updated_at: '2026-01-04T10:20:17+09:00'
+id: cc84282d3db5dc18062b
 organization_url_name: null
 slide: false
 ignorePublish: false
