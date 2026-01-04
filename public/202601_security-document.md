@@ -15,6 +15,7 @@ ignorePublish: false
 | 公開日 | タイトル | メモ |
 | :--- | :--- | :--- |
 | 2025年12月 | [サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針（案）](https://www.meti.go.jp/press/2025/12/20251226001/20251226001.html) | パブコメ |
+| 2025年12月 | [4.3 Million Browsers Infected: Inside ShadyPanda's 7-Year Malware Campaign](https://www.koi.ai/blog/4-million-browsers-infected-inside-shadypanda-7-year-malware-campaign) | - |
 | 2025年12月 | [米国 NIST IR 8587（初期公開ドラフト）トークンおよびアサーションの偽造・盗難・不正使用からの保護：政府機関およびクラウドサービスプロバイダ向け実装推奨事項](https://csrc.nist.gov/pubs/ir/8587/ipd) | パブコメ |
 | 2025年10月 | [Microsoft Digital Defense Report 2025](https://www.microsoft.com/en-us/corporate-responsibility/cybersecurity/microsoft-digital-defense-report-2025/) | |
 | 2025年10月 | [半導体デバイス工場におけるOTセキュリティガイドライン - 経済産業省](https://www.meti.go.jp/press/2025/10/20251024002/20251024002.html) | - |
