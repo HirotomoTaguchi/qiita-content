@@ -14,9 +14,9 @@ ignorePublish: false
 
 | 公開日 | タイトル | メモ |
 | :--- | :--- | :--- |
-| 2025年12月26日 | [サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針（案）](https://www.meti.go.jp/press/2025/12/20251226001/20251226001.html) | パブコメ |
-| 2025年12月22日 | [米国 NIST IR 8587（初期公開ドラフト）トークンおよびアサーションの偽造・盗難・不正使用からの保護：政府機関およびクラウドサービスプロバイダ向け実装推奨事項](https://csrc.nist.gov/pubs/ir/8587/ipd) | パブコメ |
-| 2025年10月16日 | [Microsoft Digital Defense Report 2025](https://www.microsoft.com/en-us/corporate-responsibility/cybersecurity/microsoft-digital-defense-report-2025/) | |
+| 2025年12月 | [サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針（案）](https://www.meti.go.jp/press/2025/12/20251226001/20251226001.html) | パブコメ |
+| 2025年12月 | [米国 NIST IR 8587（初期公開ドラフト）トークンおよびアサーションの偽造・盗難・不正使用からの保護：政府機関およびクラウドサービスプロバイダ向け実装推奨事項](https://csrc.nist.gov/pubs/ir/8587/ipd) | パブコメ |
+| 2025年10月 | [Microsoft Digital Defense Report 2025](https://www.microsoft.com/en-us/corporate-responsibility/cybersecurity/microsoft-digital-defense-report-2025/) | |
 | 2025年10月 | [半導体デバイス工場におけるOTセキュリティガイドライン - 経済産業省](https://www.meti.go.jp/press/2025/10/20251024002/20251024002.html) | - |
 | 2025年10月 | [CSIRTスタータキットVer 3.0](https://www.nca.gr.jp/activity/pub_doc/csirtstarterkit.html) | - |
 | 2025年9月 | [フィッシングメール対策の強化に関する要請 \| 総務省](https://www.soumu.go.jp/menu_news/s-news/01kiban18_01000260.html) | - |
@@ -24,7 +24,9 @@ ignorePublish: false
 | 2025年9月 | [Creating and Maintaining a Definitive View of Your Operational Technology (OT) Architecture](https://www.ncsc.gov.uk/collection/operational-technology/definitive-architecture-view) | - |
 | 2025年8月 | [NIST Releases Control Overlays for Securing AI Systems Concept Paper](https://csrc.nist.gov/News/2025/control-overlays-for-securing-ai-systems?fbclid=IwY2xjawMN-ftleHRuA2FlbQIxMQABHjNNay0Yi_lSyu5ZTb0GZeYIvNDw6Gkv29qfur47YXtCAGHGRwDnFBaBMLGp_aem_8mE0k7BP14sSyVFJf3zi5w) | - |
 | 2025年8月 | [Behind Black Basta](https://www.mbsd.jp/report/files/Behind_Black_Basta_20250814.pdf) | - |
+| 2025年7月 | [インターネットの安全・安心ハンドブックVer 5.10](https://security-portal.cyber.go.jp/guidance/handbook.html) | 一般向け |
 | 2025年7月 | [情報セキュリティ白書2025](https://www.ipa.go.jp/publish/hakusho.html) | - |
+| 2025年6月 | [フィッシング対策ガイドライン2025年度版 - フィッシング対策協議会](https://www.antiphishing.jp/report/guideline/antiphishing_guideline2025.html) | - |
 | 2025年6月 | [The State of Ransomware 2025](https://www.sophos.com/en-us/content/state-of-ransomware) | - |
 | 2025年6月 | [政府情報システムにおけるサイバーセキュリティに係るサプライチェーン・リスクの課題整理及び その対策のグッドプラクティス集](https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/a547f9a6/20250630_resources_standard_guidelines_technical_report_01.pdf) | - |
 | 2025年5月 | [BeyondTrust Microsoft Vulnerabilities Report 2025](https://www.beyondtrust.com/resources/whitepapers/microsoft-vulnerabilities-report) | - |
@@ -46,7 +48,7 @@ ignorePublish: false
 | 2024年10月 | [JPCERT/CC 四半期レポート (2024年度第2四半期)](https://www.jpcert.or.jp/magazine/) | - |
 | 2024年7月 | [情報セキュリティ白書2024](https://www.ipa.go.jp/publish/hakusho/2024.html) | - |
 | 2024年7月 | [脅威インテリジェンス導入・運用ガイドライン](https://www.ipa.go.jp/jinzai/ics/core_human_resource/final_project/2024/threat-intelligence.html) | - |
-| 2024年6月 | [Modern Approaches to Network Access Security](https://www.cisa.gov/resources-tools/resources/modern-approaches-network-access-security) | - |
+| 2024年6月 | [Modern Approaches to Network Access Security](https://www.cisa.gov/resources-tools/resources/modern-approaches-network-access-security) | アメリカ政府がVPN辞めるってよ |
 | 2024年4月 | [Verizon 2024 Data Breach Investigations Report (DBIR)](https://www.verizon.com/business/resources/reports/dbir/2024/) | - |
 | 2024年4月 | [Mandiant M-Trends 2024](https://www.mandiant.com/m-trends/2024) | - |
 | 2024年3月 | [サイバーセキュリティ2024](https://www.nisc.go.jp/pdf/reports/jittaigaiyou_2024.pdf) | - |
