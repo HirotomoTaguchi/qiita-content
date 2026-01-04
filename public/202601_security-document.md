@@ -2,11 +2,11 @@
 title: セキュリティ文書
 tags:
   - Security
-  - SecurityDocument
   - MicrosoftSecurity
+  - SecurityDocument
 private: true
-updated_at: ''
-id: null
+updated_at: '2026-01-04T10:39:29+09:00'
+id: b989d7df4fded8bd9ba0
 organization_url_name: null
 slide: false
 ignorePublish: false
