@@ -4,7 +4,8 @@ tags:
   - Security
   - MicrosoftSecurity
   - Microsoft365
-  - DefenderXDR
+  - MicrosoftDefender
+  - MicrosoftDefenderXDR
 private: true
 updated_at: ''
 id: null
