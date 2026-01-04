@@ -5,7 +5,6 @@ tags:
   - EntraID
   - MicrosoftSecurity
   - Microsoft365
-  - MicrosoftDefender
   - MicrosoftDefenderXDR
 private: false
 updated_at: '2025-12-28T15:54:33+09:00'
