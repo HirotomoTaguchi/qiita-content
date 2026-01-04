@@ -12,16 +12,16 @@ slide: false
 ignorePublish: false
 ---
 
-| 公開日 | タイトル | メモ |
+| 公開月 | タイトル | メモ |
 | :--- | :--- | :--- |
-| 2025年12月 | [サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針（案）](https://www.meti.go.jp/press/2025/12/20251226001/20251226001.html) | パブコメ |
-| 2025年12月 | [4.3 Million Browsers Infected: Inside ShadyPanda's 7-Year Malware Campaign](https://www.koi.ai/blog/4-million-browsers-infected-inside-shadypanda-7-year-malware-campaign) | - |
-| 2025年12月 | [米国 NIST IR 8587（初期公開ドラフト）トークンおよびアサーションの偽造・盗難・不正使用からの保護：政府機関およびクラウドサービスプロバイダ向け実装推奨事項](https://csrc.nist.gov/pubs/ir/8587/ipd) | パブコメ |
-| 2025年10月 | [Microsoft Digital Defense Report 2025](https://www.microsoft.com/en-us/corporate-responsibility/cybersecurity/microsoft-digital-defense-report-2025/) | |
+| 2025年12月 | [サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針（案）- 経済産業省](https://www.meti.go.jp/press/2025/12/20251226001/20251226001.html) | パブコメ |
+| 2025年12月 | [4.3 Million Browsers Infected: Inside ShadyPanda's 7-Year Malware Campaign - KOI](https://www.koi.ai/blog/4-million-browsers-infected-inside-shadypanda-7-year-malware-campaign) | - |
+| 2025年12月 | [米国 NIST IR 8587（初期公開ドラフト）トークンおよびアサーションの偽造・盗難・不正使用からの保護：政府機関およびクラウドサービスプロバイダ向け実装推奨事項 - NIST](https://csrc.nist.gov/pubs/ir/8587/ipd) | パブコメ |
+| 2025年10月 | [Microsoft Digital Defense Report 2025 - Microsoft](https://www.microsoft.com/en-us/corporate-responsibility/cybersecurity/microsoft-digital-defense-report-2025/) | |
 | 2025年10月 | [半導体デバイス工場におけるOTセキュリティガイドライン - 経済産業省](https://www.meti.go.jp/press/2025/10/20251024002/20251024002.html) | - |
-| 2025年10月 | [CSIRTスタータキットVer 3.0](https://www.nca.gr.jp/activity/pub_doc/csirtstarterkit.html) | - |
-| 2025年09月 | [フィッシングメール対策の強化に関する要請 \| 総務省](https://www.soumu.go.jp/menu_news/s-news/01kiban18_01000260.html) | - |
-| 2025年09月 | [監査自動化レポート～セキュリティ監査自動化に向けた現状と可能性～](https://jcispa.jasa.jp/documents/?fbclid=IwY2xjawMy9H5leHRuA2FlbQIxMABicmlkETFDajRXN25kZktPcGhPRFlNAR4CYZjW7cXUvkzxqWcWo1FRGMjC8P50x2kLsEPnsD00kJeNhGwCmDGG-ySyWw_aem_u3ArmI2r0hSMZcTASLQGHA) | - |
+| 2025年10月 | [CSIRTスタータキットVer 3.0 - NCA](https://www.nca.gr.jp/activity/pub_doc/csirtstarterkit.html) | - |
+| 2025年09月 | [フィッシングメール対策の強化に関する要請 - 総務省](https://www.soumu.go.jp/menu_news/s-news/01kiban18_01000260.html) | - |
+| 2025年09月 | [監査自動化レポート～セキュリティ監査自動化に向けた現状と可能性 - クラウドセキュリティ推進協議会（JASA）](https://jcispa.jasa.jp/documents/?fbclid=IwY2xjawMy9H5leHRuA2FlbQIxMABicmlkETFDajRXN25kZktPcGhPRFlNAR4CYZjW7cXUvkzxqWcWo1FRGMjC8P50x2kLsEPnsD00kJeNhGwCmDGG-ySyWw_aem_u3ArmI2r0hSMZcTASLQGHA) | - |
 | 2025年09月 | [Creating and Maintaining a Definitive View of Your Operational Technology (OT) Architecture](https://www.ncsc.gov.uk/collection/operational-technology/definitive-architecture-view) | - |
 | 2025年08月 | [NIST Releases Control Overlays for Securing AI Systems Concept Paper](https://csrc.nist.gov/News/2025/control-overlays-for-securing-ai-systems?fbclid=IwY2xjawMN-ftleHRuA2FlbQIxMQABHjNNay0Yi_lSyu5ZTb0GZeYIvNDw6Gkv29qfur47YXtCAGHGRwDnFBaBMLGp_aem_8mE0k7BP14sSyVFJf3zi5w) | - |
 | 2025年08月 | [Behind Black Basta](https://www.mbsd.jp/report/files/Behind_Black_Basta_20250814.pdf) | - |
