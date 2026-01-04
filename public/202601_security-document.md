@@ -5,7 +5,7 @@ tags:
   - MicrosoftSecurity
   - SecurityDocument
 private: false
-updated_at: '2026-01-04T10:54:19+09:00'
+updated_at: '2026-01-04T11:02:50+09:00'
 id: b989d7df4fded8bd9ba0
 organization_url_name: null
 slide: false
