@@ -14,7 +14,7 @@ slide: false
 ignorePublish: false
 ---
 
-Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエンドポイントのイベントを分析しますが、ログの保存においては「重要そうなもの」だけをフィルタリングして記録する仕組みになっていることが多いです。そうでもしないと、端末のすべてのログを記録していたらログ量が飛んでもないことになります。これは帯域やストレージコストの観点では合理的ですが、組織固有の監視要件には対応しきれない場合があります。そんな中、MDEではカスタムデータ収集機能という、これまで取得していなかったログを取得する機能がプレビューで出てきたので、簡単にまとめておきます。
+Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエンドポイントのイベントを分析しますが、ログの保存においては「重要そうなもの」だけをフィルタリングして保存する仕組みになっていることが多いです。そうでもしないと、端末のすべてのログを記録していたらログ量が飛んでもないことになります。これは帯域やストレージコストの観点では合理的ですが、組織固有の監視要件には対応しきれない場合があります。そんな中、MDEではカスタムデータ収集機能という、これまで取得していなかったログを取得する機能がプレビューで出てきたので、簡単にまとめておきます。
 
 ## 注意事項
 
@@ -46,7 +46,7 @@ Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエ�
 | DeviceCustomImageLoadEvents | DeviceImageLoadEvents | DLL/実行ファイルのメモリロード | DLLサイドローディング攻撃やハイジャックの検知 |
 | DeviceCustomScriptEvents | 該当なし（独自機能） | スクリプト実行とプロセス詳細 | スクリプト監査 |
 
-特に注目すべきは DeviceCustomScriptEvents ですかね。このテーブルは標準の Advanced Hunting スキーマには対応するものが存在しない、カスタムデータ収集固有の強力な機能です。標準の Advanced Hunting でもコマンドラインのログは取得していますし、私の認識では、Defenderがアラートと判定している場合のみ、スクリプトを記録します。（注）
+特に注目すべきは DeviceCustomScriptEvents ですかね。このテーブルは標準の Advanced Hunting スキーマには対応するものが存在しない、カスタムデータ収集固有の強力な機能です。標準の Advanced Hunting でもコマンドラインのログは取得していますし、私の認識では、標準の Advanced Hunting において、MDEが脅威スコアが高いと判断した場合やアラートに関連する場合など、フィルタリングされた一部のログのみが保存されます。すべてのスクリプト実行が記録されるわけではなく、特に検知に至らないレベルの挙動や、完全に無害と判定されたスクリプトの内容は、容量節約のためにクラウドに保存されない（ドロップされる）傾向にあります。（注）
 
 ![](https://github.com/user-attachments/assets/4a928a8d-818b-4c3e-afc7-ea6dett)
 
@@ -54,7 +54,7 @@ Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエ�
 注：私の認識では、実行されたスクリプトの情報はMDEで分析され、Defenderがアラートと判定している場合のみ確認でき、Advanced Huntingで参照できるログとしては保存されない認識ですが、公式ドキュメントにおいて、直接的にそれを裏付ける情報を見つけることができませんでした。見つけられた方、もしくは認識違いだと知っている方は優しく教えていただけたら幸いです。
 :::
 
-そこで、DeviceCustomScriptEvents テーブルを利用することで、特定のインタプリタやスクリプトファイルに対する監査証跡を保存できます。
+そこで、DeviceCustomScriptEvents テーブルを利用することで、特定のインタプリタやスクリプトファイルに対する監査証跡を明示的に保存できます。これは内部的に AMSI (Antimalware Scan Interface) のような機構を通じてデコードされたスクリプト内容を取得していると推測されますが、後述するように難読化解除後のコードを確認できるという強力な利点があります。
 
 ## 検証：PowerShell 難読化の可視化
 
@@ -64,11 +64,17 @@ Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエ�
 
 攻撃者は、セキュリティ製品の監視の目を逃れるために、実行するコマンドを隠そうとします。その最もポピュラーな手法が、PowerShell の `-EncodedCommand` オプションを使用した Base64 エンコードです。
 
-標準の MDE ログ（`DeviceProcessEvents`）では、プロセスが起動された事実は記録されますが、その引数（コマンドライン）は攻撃者が隠ぺいした「意味不明な英数字の羅列」のまま記録されます。Defenderはこれらを解読して分析し[^2]、危険だと判定したら証拠を残しますが、Defenderの網にかからなかったものは捨てられてしまいます。
+標準の MDE ログ（`DeviceProcessEvents`）では、プロセスが起動された事実は記録されますが、その引数（コマンドライン）は攻撃者が隠ぺいした「意味不明な英数字の羅列」のまま記録されます。Defenderはこれらをバックエンドでデコードされたものを分析し[^2]、危険だと判定したら証拠を残しますが、Defenderのアラートの網にかからなかったものは捨てられてしまい、難読化されたものだけが残ります。
+
+:::alert
+何度も言うようですが、バックエンドではデコードされてMDEで分析されています。あくまで、記録として残るかという点が論点です。
+:::
+
+そこで、DeviceCustomScriptEvents テーブルを利用することで、特定のインタプリタやスクリプトファイルに対する監査証跡を明示的に保存できます。これは内部的に AMSI (Antimalware Scan Interface) のバッファを参照していると考えられ、後述するように難読化解除後のコードを確認できるという強力な利点があります。
 
 ### 今回のデモシナリオ
 
-実際に以下の PowerShell コマンドを実行して、ログの見え方を比較してみます。これは、「Mimikatz の実行」を模した無害なメッセージを表示するだけのコマンドを、Base64 で隠ぺいして実行するシナリオです。
+実際に以下の PowerShell コマンドを実行して、ログの見え方を比較してみます。これは、「Mimikatz の実行」を模した無害なメッセージを表示するだけのコマンドを、Base64 で隠ぺいして実行するシナリオです。攻撃っぽくはありませんが、わかりやすさの観点ではいいシナリオかと思いました。
 
 ＜難読化する前のコマンド＞
 
@@ -102,7 +108,7 @@ powershell.exe -EncodedCommand $EncodedCommand
 
 ![](https://github.com/user-attachments/assets/5407ecc7-a8f7-4b63-93be-f9db427ac63b)
 
-`powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAg...` となっており、内容を監査することはできません。
+`powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAg...` となっており、内容を監査することはできません。なお、DeviceProcessEvents は新しいプロセスの起動のみを記録するため、エンコード処理を行った前段の PowerShell セッション内でのコマンド（$Bytes の代入や Base64 変換など）は記録されていません。これらはプロセス起動を伴わない、既存プロセス内での処理だからです。
 
 ### カスタムデータ収取の設定[^3]
 
@@ -117,11 +123,9 @@ https://blog.cloudnative.co.jp/24112/
 
 ### カスタムデータ収集 (DeviceCustomScriptEvents) での見え方
 
-有効にした後、ログを見ると、実行直前のスクリプトが Advanced Hunting で記録されてました。
+有効にした後、ログを見ると、実行直前のスクリプトが Advanced Hunting で記録されてました。また、興味深い点として、DeviceProcessEvents では記録されなかったセッション内でのコマンド（`$Bytes` の代入や Base64 変換処理など）も DeviceCustomScriptEvents には記録されていました。これは、DeviceCustomScriptEvents がプロセス起動イベントではなく、AMSI のようなスクリプト実行監視の仕組みを通じて、PowerShell セッション内で実行されたコード全体を捕捉しているためと考えられます。
 
 ![](https://github.com/user-attachments/assets/1332b941-248f-441d-ae1d-5f7e0fa5651f)
-
-
 
 ## 全部のログを取り巻くっていたら、破産まっしぐら
 
@@ -129,7 +133,7 @@ https://blog.cloudnative.co.jp/24112/
 
 ## AMAとのすみわけ
 
-- TBA
+- TBU
 
 ## 他の活用シーン
 
