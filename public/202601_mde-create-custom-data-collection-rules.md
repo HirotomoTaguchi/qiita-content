@@ -14,24 +14,29 @@ slide: false
 ignorePublish: false
 ---
 
-Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、標準設定では膨大なエンドポイントのイベントの中から「重要そうなもの」だけをフィルタリングして記録する仕組みになっていることが多いです。そうでもしないと、端末のすべての操作を記録していたらログ量が飛んでもないことになります。これは帯域やストレージコストの観点では合理的ですが、組織固有の監視要件には対応しきれない場合があります。そんな中、MDEではカスタムデータ収集機能という、これまで取得していなかったログを取得する機能がプレビューで出てきたので、簡単にまとめておきます。
+Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエンドポイントのイベントを分析しますが、ログの保存においては「重要そうなもの」だけをフィルタリングして記録する仕組みになっていることが多いです。そうでもしないと、端末のすべてのログを記録していたらログ量が飛んでもないことになります。これは帯域やストレージコストの観点では合理的ですが、組織固有の監視要件には対応しきれない場合があります。そんな中、MDEではカスタムデータ収集機能という、これまで取得していなかったログを取得する機能がプレビューで出てきたので、簡単にまとめておきます。
 
-## カスタムデータ収集とは何か
+## 注意事項
 
-簡単に言えば、「MDEが通常は捨ててしまうイベントを、自分で指定して強制的に記録させる」機能です。通常、MDEはカーネルレベルで大量のイベントを観測していますが、すべてをクラウドに送信するわけにはいきません。そこでMicrosoft側が「これは重要そう」と判断したイベントだけを選別して送信しています。このフィルタリングは一般的な脅威には有効ですが、例えば、組織固有のアプリケーションの挙動監視が必要な場合、標準のフィルタでは重要なイベントが捨てられてしまうことがあります。
+- 本記事は2026年1月6日時点の情報を元に執筆しています。
+- この記事の一部の情報は、GAされる前に大幅に変更される可能性があるプレリリース製品に関するものが含まれています。
 
-また、正規ツールを悪用する「Living off the Land」攻撃（環境規制型攻撃）は、まさに標準設定の盲点を突いてきます。内部不正やシャドーITの調査では、一見「正常」に見える挙動こそが重要になりますし、長期的なコンプライアンス要件への対応には数年単位のデータ保持が求められます。カスタムデータ収集は、こうした「グローバルにはノイズだが、うちの環境ではシグナル」というイベントを拾うための仕組みです。
+## カスタムデータ収集とは何か[^1]
+
+簡単に言えば、「MDEが通常は捨ててしまうイベント指定して記録する」機能です。通常、MDEはカーネルレベルで大量のイベントを観測し、分析していますが、すべてをクラウドに保存するわけにはいきません。そこでMicrosoft側が「これは重要そう」と判断したイベントだけを選別・整形して保存しています。これはどのEDRでも仕組みは大体同じです。
+
+このフィルタリングは一般的な脅威には有効ですが、例えば、組織固有のアプリケーションの挙動監視が必要な場合、標準のフィルタでは必要なイベントが捨てられてしまうことがあります。また、正規ツールを悪用する「Living off the Land」攻撃（環境規制型攻撃）は標準設定の盲点を突いてきます。カスタムデータ収集は、こうした「一般的にはノイズだが、うちの環境ではシグナル」というイベントを拾うための仕組みです。
 
 ## 制約事項
 
 - ライセンス要件として、MDE P2またはM365 E5が必須です。P1では使えません。
 - Microsoft Sentinelとの連携が必須条件です。収集したデータは通常のDefenderポータルではなく、SentinelのLog Analyticsワークスペースに直接送られます。まあ、2026年6月には強制連携させられるので、大きな点ではない気がします。
-- 制限値についても把握しておく必要があります。1ルールあたり、1デバイスあたり24時間で最大25,000イベントまでしか収集されません。フィルタが甘いとすぐ上限に達して収集が止まってしまいます。
+- 制限値についても把握しておく必要があります。1ルール及び1デバイスあたり24時間で最大25,000イベントまでしか収集されません。フィルタが甘いとすぐ上限に達して収集が止まってしまいます。
 - 対応OSはWindows 10/11およびWindows Server 2019/2022のみです。
 
 ## サポートされるイベントテーブルとスキーマ
 
-カスタムデータ収集は、すべてのシステムイベントを無差別に収集するものではありません。現在、以下の5つの特定カテゴリがサポートされており、それぞれがSentinel内で固有のテーブルにマッピングされます。
+カスタムデータ収集は、すべてのシステムイベントを無差別に収集するものではありません。現在、以下の5つの特定カテゴリがサポートされており、それぞれがSentinelでの固有のテーブルにマッピングされます。[^1]
 
 | テーブル名 | 対応する標準テーブル | 収集内容 | 主な用途 |
 |-----------|-------------------|---------|---------|
@@ -41,19 +46,25 @@ Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、標準設定�
 | DeviceCustomImageLoadEvents | DeviceImageLoadEvents | DLL/実行ファイルのメモリロード | DLLサイドローディング攻撃やハイジャックの検知 |
 | DeviceCustomScriptEvents | 該当なし（独自機能） | スクリプト実行とプロセス詳細 | スクリプト監査 |
 
-特に注目すべきは DeviceCustomScriptEventsだと思います。このテーブルは標準の Advanced Hunting スキーマには対応するものが存在しない、カスタムデータ収集固有の強力な機能です。標準のMDEでもPowerShellのログは充実していますが、その他のスクリプトエンジン（JScript、VBScript、Batch）や特定の非標準的なスクリプト実行は可視化されにくい状況があります。このテーブルを利用することで、特定のインタプリタやスクリプトファイルに対する完全な監査証跡を作成できます。
+特に注目すべきは DeviceCustomScriptEvents ですかね。このテーブルは標準の Advanced Hunting スキーマには対応するものが存在しない、カスタムデータ収集固有の強力な機能です。標準の Advanced Hunting でもコマンドラインのログは取得していますし、私の認識では、Defenderがアラートと判定している場合のみ、スクリプトを記録します。（注）
+
+![](https://github.com/user-attachments/assets/4a928a8d-818b-4c3e-afc7-ea6dett)
+
+:::note alert
+注：私の認識では、実行されたスクリプトの情報はMDEで分析され、Defenderがアラートと判定している場合のみ確認でき、Advanced Huntingで参照できるログとしては保存されない認識ですが、公式ドキュメントにおいて、直接的にそれを裏付ける情報を見つけることができませんでした。見つけられた方、もしくは認識違いだと知っている方は優しく教えていただけたら幸いです。
+:::
+
+そこで、DeviceCustomScriptEvents テーブルを利用することで、特定のインタプリタやスクリプトファイルに対する監査証跡を保存できます。
 
 ## 検証：PowerShell 難読化の可視化
 
-ここからは、実際に攻撃者がよく使用する手口をシミュレートし、それを「標準機能」と「カスタムデータ収集」でどう見えるかが異なるかを見ていきます。題材として、攻撃者が検知回避のために行う「PowerShell の Base64 難読化（EncodedCommand）」を取り上げます。
-
-注意：
+ここからは、実際に攻撃者がよく使用する手口を簡易的にシミュレートし、それを標準機能である「DeviceProcessEvents」と「カスタムデータ収集(DeviceCustomScriptEvents)」でどう見えるかが異なるかを見ていきます。題材として、攻撃者が検知回避のために行う「PowerShell の Base64 難読化（EncodedCommand）」を取り上げます。
 
 ### 背景と課題
 
 攻撃者は、セキュリティ製品の監視の目を逃れるために、実行するコマンドを隠そうとします。その最もポピュラーな手法が、PowerShell の `-EncodedCommand` オプションを使用した Base64 エンコードです。
 
-標準の MDE ログ（`DeviceProcessEvents`）では、プロセスが起動された事実は記録されますが、その引数（コマンドライン）は攻撃者が隠ぺいした「意味不明な英数字の羅列」のまま記録されます。これでは、SOCアナリストが「何か怪しいコマンドが走った」ことまでは分かっても、具体的に「Mimikatz が実行されたのか」「ランサムウェアがダウンロードされたのか」を即座に判断することができません。解読（デコード）の手間が発生し、初動対応の遅れに直結します。
+標準の MDE ログ（`DeviceProcessEvents`）では、プロセスが起動された事実は記録されますが、その引数（コマンドライン）は攻撃者が隠ぺいした「意味不明な英数字の羅列」のまま記録されます。Defenderはこれらを解読して分析し[^2]、危険だと判定したら証拠を残しますが、Defenderの網にかからなかったものは捨てられてしまいます。
 
 ### 今回のデモシナリオ
 
@@ -65,6 +76,9 @@ Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、標準設定�
 # ただのメッセージを表示するだけのコマンドです
 powershell.exe -Command "Write-Host '【DEMO】Critical Alert: Mimikatz Execution Detected!' -ForegroundColor Red; Start-Sleep -Seconds 10"
 ```
+＜難読化する前のコマンドのDefenderポータルでの見え方＞
+
+![](https://github.com/user-attachments/assets/73c8b0d6-2eef-4c73-8621-6625af84c2fe)
 
 
 ＜実行するテストコマンド（難読化済み）＞
@@ -86,31 +100,32 @@ powershell.exe -EncodedCommand $EncodedCommand
 
 既存のプロセス監視ログでは、以下のように記録されます。
 
-| 項目 | 記録内容 |
-| --- | --- |
-| **ActionType** | `ProcessCreated` |
-| **FileName** | `powershell.exe` |
-| **ProcessCommandLine** | `powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAg...` |
-| **評価** | ❌ **中身不明**。「何か長いコマンド」であることしか分からず、危険性の判断にはデコード作業が必須です。 |
-
 ![](https://github.com/user-attachments/assets/5407ecc7-a8f7-4b63-93be-f9db427ac63b)
 
-### 事前設定
+`powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAg...` となっており、内容を監査することはできません。
+
+### カスタムデータ収取の設定[^3]
+
+事前設定として、SentinelとDefenderポータルを統合しておきます。
+
+https://blog.cloudnative.co.jp/24112/
+
+その後、[Defenderポータル] > [Settings] > [Endpoints] > [Custom Data Collection] から収集の条件を設定し、保存するだけです。今回は検証なので、非常に幅広にログ取得の設定をしました。
+
+![](https://github.com/user-attachments/assets/7aa61bd8-a0c7-4b74-9bc0-b43d854cc1f2)
 
 
 ### カスタムデータ収集 (DeviceCustomScriptEvents) での見え方
 
-一方、今回紹介するカスタムデータ収集（`DeviceCustomScriptEvents`）を有効にすると、Windows の AMSI (Antimalware Scan Interface) と連携し、メモリ上で展開された**実行直前のコード**が記録されます。
+有効にした後、ログを見ると、実行直前のスクリプトが Advanced Hunting で記録されてました。
 
-| 項目 | 記録内容 |
-| --- | --- |
-| **ActionType** | `AmsiScriptContent` |
-| **ScriptContent** | `Write-Host '【DEMO】Critical Alert: Mimikatz Execution Detected!' -ForegroundColor Red; Start-Sleep -Seconds 10` |
-| **評価** | ✅ **完全可視化**。隠されていた「Mimikatz」の文字列が平文ではっきり見えています。デコード不要で即座に悪性と断定可能です。 |
+![](https://github.com/user-attachments/assets/1332b941-248f-441d-ae1d-5f7e0fa5651f)
+
+
 
 ## 全部のログを取り巻くっていたら、破産まっしぐら
 
-- TBA
+カスタムデータ収集は無計画に使うとコストが跳ね上がります。定額性のAdvanced Huntingと違い、Sentinel のログ取り込み料金は従量課金なので「とりあえず全部取る」という発想は危険です。（制限があるので全部はとれないですが・・・）加えて、Advanced Huntingでもすごいログの量ですが、これまで保存をしてこなかったログの量を舐めてはいけません。ご利用は計画的に。
 
 ## AMAとのすみわけ
 
@@ -120,8 +135,10 @@ powershell.exe -EncodedCommand $EncodedCommand
 
 今回は PowerShell の難読化解除に焦点を当てましたが、`DeviceCustomScriptEvents` は他にも多様なシナリオで威力を発揮しそうです。まだ検証が追いついていない部分があるので、随時アップデートするか他のブログにします。
 
-- TBA
-
 ## まとめ
 
 Microsoft Defender for Endpoint のカスタムデータ収集機能は、これまで「ブラックボックス」だった領域に光を当てる強力な機能です。コスト（Sentinel ログ取り込み量）とのバランスを考慮する必要はありますが、興味がある方は、まずは重要資産や管理者端末など、範囲を限定してスモールスタートとしてみるといいと思います。
+
+[^1]: [Microsoft Defender for Endpointでのカスタム データ収集 (プレビュー)](https://learn.microsoft.com/ja-jp/defender-endpoint/custom-data-collection)
+[^2]: [Antimalware Scan Interface (AMSI)](https://learn.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-portal)
+[^3]: [https://learn.microsoft.com/ja-jp/defender-endpoint/create-custom-data-collection-rules](https://learn.microsoft.com/ja-jp/defender-endpoint/create-custom-data-collection-rules)
