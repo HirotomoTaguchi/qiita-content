@@ -3,7 +3,7 @@ title: Microsoft Defender for Endpoint カスタムデータ収集でEDRログ�
 tags:
   - Security
   - Microsoft365
-  - MicrosoftDefender
+  - Defender
   - MicrosoftDefenderXDR
   - MicrosoftSecurity
 private: false
