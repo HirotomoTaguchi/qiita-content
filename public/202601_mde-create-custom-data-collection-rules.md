@@ -46,9 +46,9 @@ Microsoft Defender for Endpoint(MDE)をはじめとするEDRは、膨大なエ�
 | DeviceCustomImageLoadEvents | DeviceImageLoadEvents | DLL/実行ファイルのメモリロード | DLLサイドローディング攻撃やハイジャックの検知 |
 | DeviceCustomScriptEvents | 該当なし（独自機能） | スクリプト実行とプロセス詳細 | スクリプト監査 |
 
-特に注目すべきは DeviceCustomScriptEvents ですかね。このテーブルは標準の Advanced Hunting スキーマには対応するものが存在しない、カスタムデータ収集固有の強力な機能です。標準の Advanced Hunting でも、DeviceProcessEventsでのプロセス起動では、当該processのコマンドラインのログは取得していますし、MDEが脅威スコアが高いと判断した場合やアラートに関連する場合など、フィルタリングされた一部のログのみがアラート画面に保存されます。すべてのスクリプト実行が記録されるわけではなく、特に検知に至らないレベルの挙動や、完全に無害と判定されたスクリプトの内容は、容量節約のためにクラウドに保存されない（ドロップされる）傾向にあります。（注）
+特に注目すべきは DeviceCustomScriptEvents ですかね。このテーブルは標準の Advanced Hunting スキーマには対応するものが存在しない、カスタムデータ収集固有の強力な機能です。標準の Advanced Hunting でも、DeviceProcessEventsでのプロセス起動では、当該processのコマンドラインのログは取得しています。また、MDEが脅威スコアが高いと判断した場合やアラートに関連する場合など、フィルタリングされた一部のスクリプトがアラートとともに保存され、下記のようにアラート画面で閲覧できます。すべてのスクリプト実行が記録されるわけではなく、特に検知に至らないレベルの挙動や、完全に無害と判定されたスクリプトの内容は、容量節約のためにクラウドに保存され（ドロップされる）傾向にあります。（注）
 
-![](https://github.com/user-attachments/assets/4a928a8d-818b-4c3e-afc7-ea6dett)
+![](https://github.com/user-attachments/assets/f1be14fa-9e61-485a-99d6-b2be01778a18)
 
 :::note alert
 注：私の認識では、実行されたスクリプトの情報はMDEで分析され、Defenderがアラートと判定している場合のみ確認でき、Advanced Huntingで参照できるログとしては保存されない認識ですが、公式ドキュメントにおいて、直接的にそれを裏付ける情報を見つけることができませんでした。見つけられた方、もしくは認識違いだと知っている方は優しく教えていただけたら幸いです。
