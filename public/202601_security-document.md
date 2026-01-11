@@ -17,6 +17,7 @@ ignorePublish: false
 | 2025年12月 | [サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針（案）- 経済産業省](https://www.meti.go.jp/press/2025/12/20251226001/20251226001.html) | パブコメ |
 | 2025年12月 | [4.3 Million Browsers Infected: Inside ShadyPanda's 7-Year Malware Campaign - KOI](https://www.koi.ai/blog/4-million-browsers-infected-inside-shadypanda-7-year-malware-campaign) | - |
 | 2025年12月 | [米国 NIST IR 8587（初期公開ドラフト）トークンおよびアサーションの偽造・盗難・不正使用からの保護：政府機関およびクラウドサービスプロバイダ向け実装推奨事項 - NIST](https://csrc.nist.gov/pubs/ir/8587/ipd) | パブコメ |
+| 2025年11月 | [The Letter — Stop Hacklore!](https://www.hacklore.org/letter) | - |
 | 2025年10月 | [Microsoft Digital Defense Report 2025 - Microsoft](https://www.microsoft.com/en-us/corporate-responsibility/cybersecurity/microsoft-digital-defense-report-2025/) | |
 | 2025年10月 | [半導体デバイス工場におけるOTセキュリティガイドライン - 経済産業省](https://www.meti.go.jp/press/2025/10/20251024002/20251024002.html) | - |
 | 2025年10月 | [CSIRTスタータキットVer 3.0 - NCA](https://www.nca.gr.jp/activity/pub_doc/csirtstarterkit.html) | - |
@@ -70,5 +71,6 @@ ignorePublish: false
 | 2023年 | [情報セキュリティ白書2023](https://www.ipa.go.jp/publish/hakusho/2023.html) | - |
 | 2023年 | [情報セキュリティ10大脅威 2023](https://www.ipa.go.jp/security/10threats/10threats2023.html) | - |
 | 2022年 | [ISO/IEC 27001:2022 情報セキュリティマネジメントシステム](https://www.iso.org/standard/82875.html) | - |
+| 2022年 | [RANSOMWARE GUIDE - CISA](https://www.cisa.gov/sites/default/files/publications/CISA_MS-ISAC_Ransomware%20Guide_S508C.pdf) | - |
 | 2017年 | [ゼロトラストネットワーク ―境界防御の限界を超えるためのセキュアなシステム設計](https://amzn.to/4fBIwVY) | - |
 | 2013年 | [ISO/IEC 27001:2013 情報セキュリティマネジメントシステム](https://www.iso.org/standard/82875.html) | - |
