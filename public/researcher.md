@@ -1,12 +1,12 @@
 ---
-title:  Microsoft 365 Copilotのリサーチャーエージェントで人事評価（定量）を書いてしまった
+title: Microsoft 365 Copilotのリサーチャーエージェントで人事評価（定量）を書いてしまった
 tags:
   - Microsoft365
+  - copilot
   - Microsoft365Copilot
-  - Copilot
 private: false
-updated_at: ''
-id: 
+updated_at: '2026-01-13T22:14:43+09:00'
+id: a39ac514e34d70fc2425
 organization_url_name: null
 slide: false
 ignorePublish: false
