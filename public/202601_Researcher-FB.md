@@ -5,7 +5,7 @@ tags:
   - copilot
   - Microsoft365Copilot
 private: false
-updated_at: '2026-01-13T22:17:54+09:00'
+updated_at: '2026-01-13T22:19:15+09:00'
 id: a39ac514e34d70fc2425
 organization_url_name: null
 slide: false
