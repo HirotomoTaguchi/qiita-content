@@ -61,9 +61,12 @@ Purview のポータルでの選択画面の項目と、実際のログの項目
 
 エクスポートが完了したら、「結果のダウンロード」をクリックするとCSVファイルが自動的にダウンロードされます。ファイル名は `AuditLog_YYYYMMDD_HHMMSS.csv` のような形式になります。
 
+![](https://github.com/user-attachments/assets/3250c688-07a0-4dea-8301-7ac749efeeb3)
+
+
 ## エクスポートされた監査ログの構造
 
-Microsoft PurviewからエクスポートされたTeamsの監査ログは、CSVファイルとして提供されますが、重要な情報がJSON形式で埋め込まれているため、ぱっと見わかりにくいのが難点です。エクスポートされたCSVの構造は以下のようになっています。
+Microsoft PurviewからエクスポートされたTeamsの監査ログは、CSVファイルとして提供されますが、エンベロープ形式で重要な情報がJSON形式で埋め込まれているため、ぱっと見わかりにくいのが難点です。エクスポートされたCSVの構造は以下のようになっています。
 
 ```csv
 RecordId,CreationDate,RecordType,Operation,UserId,AuditData,AssociatedAdminUnits,AssociatedAdminUnitsNames
