@@ -4,10 +4,10 @@ tags:
   - Security
   - MicrosoftTeams
   - Microsoft365
-  - MicrosoftSecurity
   - Purview
+  - MicrosoftSecurity
 private: false
-updated_at: '2026-02-01T21:01:24+09:00'
+updated_at: '2026-02-01T21:03:20+09:00'
 id: ce4a8cf48f201f5c5671
 organization_url_name: null
 slide: false
