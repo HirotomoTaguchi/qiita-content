@@ -78,7 +78,7 @@ RecordIdは監査レコードの一意識別子、CreationDateはイベント発
 
 ### AuditData内のJSON構造
 
-`AuditData` 列には以下のような複雑なJSON構造が含まれています：
+`AuditData` 列には以下のような複雑なJSON構造が含まれています。（サンプル）
 
 ```json
 {
