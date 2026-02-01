@@ -1,5 +1,5 @@
 ---
-title: Teamsの「外部アクセス」のログをPurviewで監査する
+title: Teams の「外部アクセス」のログを Purview で監査する
 tags:
   - Security
   - MicrosoftTeams
