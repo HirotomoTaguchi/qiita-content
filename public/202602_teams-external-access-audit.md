@@ -1,5 +1,5 @@
 ---
-title: Teamsの外部アクセスのログを監査する
+title: Teamsの「外部アクセス」のログをPurviewで監査する
 tags:
   - Security
   - MicrosoftTeams
@@ -14,7 +14,7 @@ slide: false
 ignorePublish: false
 ---
 
-Microsoft Teamsで自社組織以外の外部組織とのコラボレーションする方法は、僕の理解だと「外部アクセス」「ゲストユーザー」「直接接続（Teams Connect）」がある認識ですが、今回は外部アクセスのチャットのログをPurviewでとることを簡単にメモがてらまとめます。
+Microsoft Teamsで自社組織以外の外部組織とのコラボレーションする方法は、僕の理解だと「外部アクセス[^1]」「ゲストユーザー[^2]」「直接接続（Teams Connect）[^3]」がある認識ですが、今回は外部アクセスのチャットのログをPurviewでとることを簡単にメモがてらまとめます。
 
 ## 前提条件
 
@@ -28,7 +28,7 @@ Microsoft Teamsで自社組織以外の外部組織とのコラボレーショ�
 
 監査ログ検索画面では、Teamsの外部アクセスログを取得するための条件を設定します。
 
-「アクティビティ」では「Microsoft Teamsのアクティビティ」の以下を選択します。
+「アクティビティ」では「Microsoft Teamsのアクティビティ」の以下を選択します。[^4]
 
 - `Created a chat` (メンバー追加)
 - `Posted a new message` (メッセージ送信)
@@ -104,3 +104,8 @@ RecordIdは監査レコードの一意識別子、CreationDateはイベント発
 ## おわりに
 
 レコードの数が増えてくると、JSON内の重要フィールドを正規化しないと見にくいですね。。。まずは監査ログのエクスポートから始め、自組織の外部アクセスの状況を把握することから始めると良いなと思いました。
+
+[^1]: [ゲスト アクセスと外部アクセスを使用して、組織外の人々とコラボレーションする](https://learn.microsoft.com/ja-jp/microsoftteams/communicate-with-users-from-other-organizations)
+[^2]: [ゲスト アクセスと外部アクセスを使用して、組織外の人々とコラボレーションする](https://learn.microsoft.com/ja-jp/microsoftteams/communicate-with-users-from-other-organizations)
+[^3]: [共有チャンネルでTeamsのユーザー体験を変える！Microsoft Teams Connect](https://blog.cloudnative.co.jp/11750/) 
+[^4]: [監査ログ アクティビティ](https://learn.microsoft.com/ja-jp/purview/audit-log-activities)
