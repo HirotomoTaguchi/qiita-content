@@ -5,7 +5,7 @@ tags:
   - MicrosoftTeams
   - Microsoft365
   - MicrosoftSecurity
-  - MicrosofPurview
+  - Purview
 private: false
 updated_at: '2026-02-01T21:01:24+09:00'
 id: ce4a8cf48f201f5c5671
