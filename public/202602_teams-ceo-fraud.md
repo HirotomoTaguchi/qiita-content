@@ -14,7 +14,7 @@ slide: false
 ignorePublish: false
 ---
 
-最近流行っている「CEO詐欺（経営層になりすました詐欺）」が、Microsoft Teams などのチャットツールにも広がりを見せています。昔から Teams を使った詐欺は行われていたものの、改めてそれらについて簡単にまとめていきたいと思います。
+最近流行っている「CEO詐欺（経営層になりすました詐欺）」が、Microsoft Teams などのチャットツールにも広がりを見せているそうです。昔から Teams を使った詐欺は行われていたものの、改めてそれらについて簡単にまとめていきたいと思います。
 
 :::note alert
 本記事では Microsoft Teams を例に挙げますが、他のあらゆるツールでも悪用のリスクは存在します。ツールごとのセキュリティ設定を確認することが重要です。
@@ -132,6 +132,8 @@ https://qiita.com/hirotomotaguchi/items/ce4a8cf48f201f5c5671
 とはいえ、Teamsに限った話だと以下のような情報が役立つので、ご活用ください。
 
 https://x.com/naoki0311/status/2019205756764196954
+
+https://www.microsoft.com/en-us/security/blog/2025/10/07/disrupting-threats-targeting-microsoft-teams/
 
 ## まとめ
 
