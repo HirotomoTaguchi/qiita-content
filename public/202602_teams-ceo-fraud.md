@@ -28,7 +28,7 @@ ignorePublish: false
 
 お互いのテナントのユーザーが、自社の ID のままチャットや通話を行う機能です。いわゆるフェデレーションのようなもので、相手を自社テナントに招待するわけではありません。
 
-![](https://github.com/user-attachments/assets/e51995c8-2943-4af0-b13d-482d576ffef4)
+![](https://github.com/user-attachments/assets/31f34490-66e7-46da-b208-6bae89a144c9)
 
 これ、意外と知名度が低い機能ですが、Teamsのチャットを開き、連絡先相手のメールアドレスを直打ちすると、制限されていない場合、良くも悪くもチャットができてしまうんです。
 
@@ -45,7 +45,7 @@ ignorePublish: false
 
 B2B 直接接続 (B2B Direct Connect) を利用し、Teamsのチャンネルを接続する方法です。テナントを切り替えることなく特定チャネルのみを共有することができるので、個人的にはこれが一番好きです。（ついていける人が少ないので、あまり活用できてませんが・・・）
 
-![](https://github.com/user-attachments/assets/350ddf6c-4d88-4a1b-ae7f-cdf2505a41a5)
+![](https://github.com/user-attachments/assets/ee169325-8d52-40c4-ba5a-811aaab407a6)
 
 ## 事前知識2. CEO詐欺 とは
 
