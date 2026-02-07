@@ -6,7 +6,7 @@ tags:
   - Microsoft365
   - Purview
   - MicrosoftSecurity
-private: true
+private: false
 updated_at: '2026-02-07T19:11:08+09:00'
 id: 4db2182e2384df4122a2
 organization_url_name: null
