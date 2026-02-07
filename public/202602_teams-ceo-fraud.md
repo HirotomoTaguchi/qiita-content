@@ -1,5 +1,5 @@
 ---
-title: CEO 詐欺における Microsoft Teams の悪用に関する注意喚起
+title: Microsoft Teams を悪用したCEO詐欺について
 tags:
   - Security
   - MicrosoftTeams
