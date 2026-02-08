@@ -67,11 +67,11 @@ https://piyolog.hatenadiary.jp/entry/2026/01/16/155626
 
 従業員の Teams には、見慣れた社長の名前でチャットが届きます。 Teams の仕様上、名前に (外部) や (External) というタグが表示されますが、攻撃者は「緊急で個人のPCから連絡している」「出張先で別アカウントを使っている」「極秘プロジェクト用のアカウントだ」といった口実でこれを正当化します。
 
-![](https://github.com/user-attachments/assets/862e8314-40ba-4c2c-8ca8-05764eb6e999)
+![](https://github.com/user-attachments/assets/0290f900-228e-462f-a13b-5ebc8638255b)
 
 騙されやすいシナリオとして、親会社の役員等から早朝に連絡が来ているようなケースが考えられます。そうすると、朝イチの寝ぼけた頭で、スマホで偉い人からの連絡を見て、パニックのまま騙されてしまう可能性があるかと思います。
 
-![](https://github.com/user-attachments/assets/ed33d513-54fa-45c5-a3f3-db69ba8368b6)
+![](https://github.com/user-attachments/assets/862e8314-40ba-4c2c-8ca8-05764eb6e999)
 
 上記画像の右側は実際のTeamsの連絡画面ですが、スマホでTeamsを見た場合、外部ユーザーの警告が出るものの、画面のサイズが小さいので判断が難しくなります。
 
