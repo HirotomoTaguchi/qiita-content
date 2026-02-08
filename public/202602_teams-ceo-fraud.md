@@ -7,7 +7,7 @@ tags:
   - Purview
   - MicrosoftSecurity
 private: false
-updated_at: '2026-02-08T11:30:57+09:00'
+updated_at: '2026-02-08T14:09:51+09:00'
 id: 4db2182e2384df4122a2
 organization_url_name: null
 slide: false
