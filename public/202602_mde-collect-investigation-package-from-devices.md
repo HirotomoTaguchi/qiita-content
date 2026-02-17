@@ -14,7 +14,7 @@ slide: false
 ignorePublish: false
 ---
 
-セキュリティインシデントが発生したとき、「あのマシンで何が起きていたのか？」を迅速に把握することが対応のポイントになることがありますが、Microsoft Defender for Endpoint（MDE）には 調査パッケージ（Investigation Package） という機能があり、これが思いのほか強力です。今回は改めてその魅力をご紹介します。
+セキュリティインシデントが発生したとき、「あのマシンで何が起きていたのか？」を迅速に把握することが対応のポイントになることがありますが、Microsoft Defender for Endpoint（MDE）には 調査パッケージ（Investigation Package） という機能があり、これが思いのほか強力です。今回は改めてその魅力をご紹介します。（新しい機能でもなんでもなく、今更感ありますが・・・）
 
 ## 注意事項
 
