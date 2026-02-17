@@ -1,5 +1,5 @@
 ---
-title: 今更ながら、Defender for Endpoint の調査パッケージが便利すぎる
+title: 今更ながら、Defender for Endpoint の調査パッケージがとても便利
 tags:
   - Security
   - Defender
