@@ -7,8 +7,8 @@ tags:
   - MicrosoftDefenderXDR
   - MicrosoftSecurity
 private: true
-updated_at: ''
-id: 
+updated_at: '2026-02-28T17:07:15+09:00'
+id: ff5bb132fb2012a7aabd
 organization_url_name: null
 slide: false
 ignorePublish: false
