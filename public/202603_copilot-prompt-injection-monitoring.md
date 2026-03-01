@@ -118,7 +118,7 @@ CopilotActivity
 
 ## 余談
 
-下記ブログ曰く、Defender for Cloud Apps の CloudAppEvents でも見れるようなので、Defender for Cloud Apps がある方はそちらで見るのもいいかもしれません。
+今回はSenitnelを使いましたが、下記ブログ曰く、Defender for Cloud Apps の CloudAppEvents でも見れるようなので、Defender for Cloud Apps がある方はそちらで見るのもいいかもしれません。
 
 https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047
 
