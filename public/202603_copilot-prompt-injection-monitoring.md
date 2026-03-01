@@ -1,12 +1,12 @@
 ---
 title: Copilotに対するプロンプトインジェクションやJailbreakをSentinelでモニタリングしてみた
 tags:
-  - Security
   - Microsoft365
   - MicrosoftDefender
-  - MicrosoftDefenderXDR
+  - Copilot
+  - Microsoft365Copilot
   - MicrosoftSecurity
-private: true
+private: false
 updated_at: '2026-03-01T22:49:05+09:00'
 id: ff5bb132fb2012a7aabd
 organization_url_name: null
@@ -112,7 +112,7 @@ CopilotActivity
 
 ## おわりに
 
-怒られるかもしれませんが、個人的には「今すぐ致命的な被害をもたらすクリティカルな問題か？」と言われるとそんな気はしません。Microsoft 365 Copilot自体にも強力なデータ保護が備わっているので、そこで十分かもしれません。（この前、それが上手く機能しない問題はありましたが・・・[^7]）
+怒られるかもしれませんが、個人的には「今すぐ致命的な被害をもたらすクリティカルな問題か？」と言われると、少なくとも僕の身近を想像するとそんな気はしません。Microsoft 365 Copilot自体にも強力なデータ保護が備わっているので、そこで十分かもしれません。（この前、それが上手く機能しない問題はありましたが・・・[^7]）
 
 しかし、今後AI技術がさらに発展し、自律的にタスクをこなすエージェントとしてさまざまなシステムと深く連携するようになれば、このリスクは絶対に無視できなくなるだろうと思っています。AIを安全に活用していくためにも、今のうちからこうしたSentinelを使ったAIの監視・ガバナンスの仕組みに触れておくことは、非常に価値があると感じました。
 
