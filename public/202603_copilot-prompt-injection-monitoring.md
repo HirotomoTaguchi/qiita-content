@@ -24,10 +24,6 @@ ignorePublish: false
 
 まずは、今回のブログで懸念するシナリオを整理します。
 
-:::note info
-ちなみにこのシナリオは、Copilotに限らないものです。
-:::
-
 ### プロンプトインジェクション
 
 プロンプトインジェクションとは、AIに対して悪意のある指示を埋め込み、本来の安全フィルターや企業ポリシーを無視した動きを実行させる攻撃手法です。大きく2種類に分類されます。
@@ -46,6 +42,10 @@ ignorePublish: false
 
 AIには安全性や倫理性を担保するために、あらかじめさまざまな制約が設けられています。Jailbreakとは、こうした制約を意図的に突破しようとする行為の総称です。[^4] 上述の直接プロンプトインジェクションと重なる部分も多いですが、AIに別のキャラクターを演じさせることで制限を回避しようとする手口が代表的です。
 
+:::note info
+ちなみにこのシナリオは、Copilotに限らない一般的なものです。Copilotにおけるデフォルトの対策は後述します。
+:::
+
 ## Copilotの防御機能
 
 こうした攻撃に対して、M365 Copilotはいくつかの防御機能をもともと備えています。ポイントを抜粋して以下に紹介します。[^5] [^6]
@@ -54,9 +54,11 @@ AIには安全性や倫理性を担保するために、あらかじめさまざ
 
 CopilotはMicrosoft Graphを通じてユーザーがアクセス権を持つデータのみを取得します。データ取得とモデルの推論が分離されているため、悪意のあるプロンプトがシステムの制御を奪おうとしても、権限外のデータにはそもそも届きません。
 
-### プロンプトインジェクション防御（フィルタリング）
+### プロンプトインジェクション防御（実行制御）
 
-「前の指示を無視して」「隠しデータを開示して」といった典型的なインジェクションパターンは、LLMに届く前の段階で自動的にブロックされます。
+「前の指示を無視して」「隠しデータを開示して」といった典型的なインジェクションパターンは、悪意あるパターンはプロンプト検査とコンテンツフィルタリングによってブロックされます。
+
+https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security
 
 ## Sentinelでのモニタリングしてみた
 
@@ -128,9 +130,9 @@ CopilotActivity
 
 ## 余談
 
-今回はSenitnelを使いましたが、下記ブログ曰く、Defender for Cloud Apps の CloudAppEvents でも見れるようなので、Defender for Cloud Apps がある方はそちらで見るのもいいかもしれません。
+今回はSenitnelを使いましたが、Defender for Cloud Apps の CloudAppEvents でも見れるようなので、Defender for Cloud Apps がある方はそちらで見るのもいいかもしれません。
 
-https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047
+![](https://github.com/user-attachments/assets/4cfa4b7f-ce1c-493b-a8d2-b275ba4e40f2)
 
 [^1]: [The Microsoft Copilot Data Connector for Microsoft Sentinel is Now in Public Preview](https://techcommunity.microsoft.com/blog/microsoftsentinelblog/the-microsoft-copilot-data-connector-for-microsoft-sentinel-is-now-in-public-pre/4491986)
 [^2]: [How Microsoft Defender helps security teams detect prompt injection attacks in Microsoft 365 Copilot](https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047)
