@@ -1,5 +1,5 @@
 ---
-title: Copilotに対するプロンプトインジェクションやJailbreakをSentinelでモニタリングしてみた
+title: Microsoft 365 Copilot に対するプロンプトインジェクションやJailbreakをSentinelでモニタリングしてみた
 tags:
   - Microsoft365
   - MicrosoftDefender
@@ -14,7 +14,7 @@ slide: false
 ignorePublish: false
 ---
 
-最近、Microsoft Sentinel向けの「Microsoft Copilotデータコネクタ」がパブリックプレビューになりました。[^1] 今回は、このコネクタを使ってCopilotに対するプロンプトインジェクションやJailbreakのモニタリングができるか試してみました。
+最近、Microsoft Sentinel向けの「Microsoft Copilotデータコネクタ」がパブリックプレビューになりました。[^1] 今回は、このコネクタを使って Microsoft 365 Copilot に対するプロンプトインジェクションやJailbreakのモニタリングができるか試してみました。
 
 :::note info
 本記事は2026年3月1日時点の筆者の検証に基づき作成しています
@@ -48,11 +48,11 @@ AIには安全性や倫理性を担保するために、あらかじめさまざ
 
 ## Copilotの防御機能
 
-こうした攻撃に対して、M365 Copilotはいくつかの防御機能をもともと備えています。ポイントを抜粋して以下に紹介します。[^5] [^6]
+こうした攻撃に対して、Microsoft 365 Copilot はいくつかの防御機能をもともと備えています。ポイントを抜粋して以下に紹介します。[^5] [^6] [^7]
 
 ### アクセスコントロール
 
-CopilotはMicrosoft Graphを通じてユーザーがアクセス権を持つデータのみを取得します。データ取得とモデルの推論が分離されているため、悪意のあるプロンプトがシステムの制御を奪おうとしても、権限外のデータにはそもそも届きません。
+Microsoft 365 Copilot はMicrosoft Graphを通じてユーザーがアクセス権を持つデータのみを取得します。データ取得とモデルの推論が分離されているため、悪意のあるプロンプトがシステムの制御を奪おうとしても、権限外のデータにはそもそも届きません。
 
 ### プロンプトインジェクション防御（実行制御）
 
@@ -62,7 +62,7 @@ https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai
 
 ## Sentinelでのモニタリングしてみた
 
-上記のように、Copilot自体がある程度の防御は担ってくれています。組織によっては、それだけで十分なケースもあるかもしれません。一方、こうした仕組みが動いていることは表に出てきにくいです。ユーザー的には、プロンプトシールドでブロックされた場合「すみませんが、それについては回答を出すことができません。何か他のことでお手伝いできることはありますか？」と言われるだけですし、管理者も意図的に見に行かないと状況を確認することができません。
+上記のように、Microsoft 365 Copilot 自体がある程度の防御は担ってくれています。組織によっては、それだけで十分なケースもあるかもしれません。一方、こうした仕組みが動いていることは表に出てきにくいです。ユーザー的には、プロンプトシールドでブロックされた場合「すみませんが、それについては回答を出すことができません。何か他のことでお手伝いできることはありますか？」と言われるだけですし、管理者も意図的に見に行かないと状況を確認することができません。
 
 ![](https://github.com/user-attachments/assets/e7622384-38f2-4d30-a947-0b45a1550d60)
 
@@ -98,7 +98,9 @@ https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai
 ]
 ```
 
-Copilotがメール・ファイル・Webページなどにアクセスするたびに、URLとともに `XPIADetected` フラグが記録されます。KQLでこれらのフラグを検索するには、JSON内の配列を展開する必要があるため、以下のクエリでは `mv-expand` を使っています。
+Copilotがメール・ファイル・Webページなどにアクセスするたびに、URLとともに `XPIADetected` フラグが記録されます。
+
+KQLでこれらのフラグを検索するには、JSON内の配列を展開する必要があるため、以下のクエリでは `mv-expand` を使っています。
 
 ### JailbreakDetected の検出
 
@@ -124,7 +126,7 @@ CopilotActivity
 
 ## おわりに
 
-怒られるかもしれませんが、個人的には「今すぐ致命的な被害をもたらすクリティカルな問題か？」と言われると、少なくとも僕の身近を想像するとそんな気はしません。Microsoft 365 Copilot自体にも強力なデータ保護がありますし、現時点ではそれで十分な法人もあるかもしれません。（この前、その保護機能の一部が上手く機能しない問題はありましたが・・・[^7]）
+怒られるかもしれませんが、個人的には「今すぐ致命的な被害をもたらすクリティカルな問題か？」と言われると、少なくとも僕の身近を想像するとそんな気はしません。Microsoft 365 Copilot自体にも強力なデータ保護がありますし、現時点ではそれで十分な法人もあるかもしれません。（この前、その保護機能の一部が上手く機能しない問題はありましたが・・・[^8]）
 
 しかし、今後AI技術がさらに発展し、自律的にタスクをこなすエージェントとしてさまざまなシステムと深く連携するようになれば、このリスクは絶対に無視できなくなるだろうと思っています。AIを安全に活用していくためにも、今のうちからこうしたSentinelを使ったAIの監視・ガバナンスの仕組みに触れておくことは、非常に価値があると感じました。
 
@@ -138,6 +140,7 @@ CopilotActivity
 [^2]: [How Microsoft Defender helps security teams detect prompt injection attacks in Microsoft 365 Copilot](https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047)
 [^3]: [How Microsoft Defender helps security teams detect prompt injection attacks in Microsoft 365 Copilot](https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047)
 [^4]: [Jailbreak - Wikipedia](https://ja.wikipedia.org/wiki/Jailbreak)
-[^5]: [How Microsoft Defender helps security teams detect prompt injection attacks in Microsoft 365 Copilot](https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047) / [Microsoft 365 Copilotのセキュリティ](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
-[^6]: [How Microsoft defends against indirect prompt injection attacks](https://www.microsoft.com/en-us/msrc/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks)
-[^7]: [EchoLeak: The First Real-World Zero-Click Prompt Injection Exploit in a Production LLM System](https://arxiv.org/html/2509.10540v1)
+[^5]: [How Microsoft Defender helps security teams detect prompt injection attacks in Microsoft 365 Copilot](https://techcommunity.microsoft.com/blog/microsoftthreatprotectionblog/how-microsoft-defender-helps-security-teams-detect-prompt-injection-attacks-in-m/4457047) 
+[^6]: [Microsoft 365 Copilotのセキュリティ](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
+[^7]: [How Microsoft defends against indirect prompt injection attacks](https://www.microsoft.com/en-us/msrc/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks)
+[^8]: [EchoLeak: The First Real-World Zero-Click Prompt Injection Exploit in a Production LLM System](https://arxiv.org/html/2509.10540v1)
